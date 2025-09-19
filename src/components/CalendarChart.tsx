@@ -17,6 +17,7 @@ interface CalendarChartProps {
 
 const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearChange }) => {
   const [hoveredCell, setHoveredCell] = useState<CalendarCell | null>(null);
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
   
   const weeks = useMemo(() => generateHorizontalCalendar(dailyData, year), [dailyData, year]);
   const monthLabels = useMemo(() => getMonthLabels(year), [year]);
@@ -70,6 +71,28 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
   };
 
   const monthPositions = getMonthPositions();
+
+  // Calculate tooltip position with bounds checking
+  const getTooltipPosition = (mouseX: number, mouseY: number) => {
+    const tooltipWidth = 200; // maxWidth from the tooltip
+    const tooltipHeight = 150; // estimated height
+    const offset = 10; // offset from cursor
+    
+    let left = mouseX + offset;
+    let top = mouseY + offset;
+    
+    // Check right boundary
+    if (left + tooltipWidth > window.innerWidth) {
+      left = mouseX - tooltipWidth - offset;
+    }
+    
+    // Check bottom boundary
+    if (top + tooltipHeight > window.innerHeight) {
+      top = mouseY - tooltipHeight - offset;
+    }
+    
+    return { left, top };
+  };
 
   return (
     <div className="card relative">
@@ -161,16 +184,17 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
                         } ${cell.isEmpty ? 'opacity-50' : ''}`}
                         onMouseEnter={(e) => {
                           setHoveredCell(cell);
-                          // Position tooltip near cursor with proper bounds checking
-                          const tooltip = document.getElementById('calendar-tooltip');
-                          if (tooltip) {
-                            const rect = e.currentTarget.getBoundingClientRect();
-                            tooltip.style.left = `${rect.left + rect.width / 2}px`;
-                            tooltip.style.top = `${rect.bottom + 5}px`;
-                            tooltip.style.transform = 'translateX(-50%)';
-                          }
+                          // Capture mouse position for tooltip
+                          setMousePosition({ x: e.clientX, y: e.clientY });
                         }}
-                        onMouseLeave={() => setHoveredCell(null)}
+                        onMouseMove={(e) => {
+                          // Update mouse position as mouse moves
+                          setMousePosition({ x: e.clientX, y: e.clientY });
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredCell(null);
+                          setMousePosition(null);
+                        }}
                       />
                     );
                   })}
@@ -181,12 +205,16 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
         </div>
       </div>
 
-      {/* Hover tooltip - positioned near cursor */}
-      {hoveredCell?.data && (
+      {/* Hover tooltip - positioned at mouse cursor */}
+      {hoveredCell?.data && mousePosition && (
         <div
           id="calendar-tooltip"
           className="fixed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 shadow-lg z-50 pointer-events-none"
-          style={{ maxWidth: '200px' }}
+          style={{ 
+            maxWidth: '200px',
+            left: `${getTooltipPosition(mousePosition.x, mousePosition.y).left}px`,
+            top: `${getTooltipPosition(mousePosition.x, mousePosition.y).top}px`
+          }}
         >
           <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
             {hoveredCell.date}

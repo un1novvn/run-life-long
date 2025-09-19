@@ -47,7 +47,7 @@ const BarChart: React.FC<BarChartProps> = ({
               </div>
 
               {/* Hover tooltip */}
-              <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg z-10 -top-12 left-1/2 transform -translate-x-1/2 pointer-events-none">
+              {/* <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg z-10 -top-12 left-1/2 transform -translate-x-1/2 pointer-events-none">
                 <div className="text-xs font-medium text-gray-900 dark:text-gray-100">
                   {label}
                 </div>
@@ -61,7 +61,7 @@ const BarChart: React.FC<BarChartProps> = ({
                     </>
                   )}
                 </div>
-              </div>
+              </div> */}
             </div>
           );
         })}
