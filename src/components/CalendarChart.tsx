@@ -72,7 +72,7 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
   const monthPositions = getMonthPositions();
 
   return (
-    <div className="card">
+    <div className="card relative">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
           跑步日历 {year}
@@ -106,15 +106,15 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
 
       <div className="overflow-x-auto">
         <div className="inline-block">
-          {/* Month labels at top */}
-          <div className="flex mb-2 pl-8">
+          {/* Month labels at top - perfectly aligned with cells */}
+          <div className="flex mb-2" style={{ marginLeft: '32px' }}>
             {monthPositions.map((pos, index) => (
               <div
                 key={index}
                 className="text-xs text-gray-600 dark:text-gray-400 text-center"
                 style={{ 
                   width: `${(pos.endWeek - pos.startWeek + 1) * 14}px`,
-                  marginLeft: index === 0 ? '0' : '1px'
+                  marginRight: '1px'
                 }}
               >
                 {pos.month}
@@ -123,13 +123,17 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
           </div>
 
           <div className="flex">
-            {/* Weekday labels on left side */}
+            {/* Weekday labels on left side - better alignment */}
             <div className="flex flex-col mr-2">
               {weekdayLabels.map((day, index) => (
                 <div
                   key={index}
                   className="text-xs text-gray-600 dark:text-gray-400 text-center w-8 h-3 flex items-center justify-center mb-1"
-                  style={{ height: '14px', marginBottom: '1px' }}
+                  style={{ 
+                    height: '14px', 
+                    marginBottom: '4px',
+                    lineHeight: '14px'
+                  }}
                 >
                   {day}
                 </div>
@@ -155,9 +159,18 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
                         className={`w-3 h-3 rounded-sm m-px cursor-pointer transition-all duration-200 ${
                           getColorIntensity(cell.distance, maxDistance)
                         } ${cell.isEmpty ? 'opacity-50' : ''}`}
-                        onMouseEnter={() => setHoveredCell(cell)}
+                        onMouseEnter={(e) => {
+                          setHoveredCell(cell);
+                          // Position tooltip near cursor with proper bounds checking
+                          const tooltip = document.getElementById('calendar-tooltip');
+                          if (tooltip) {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            tooltip.style.left = `${rect.left + rect.width / 2}px`;
+                            tooltip.style.top = `${rect.bottom + 5}px`;
+                            tooltip.style.transform = 'translateX(-50%)';
+                          }
+                        }}
                         onMouseLeave={() => setHoveredCell(null)}
-                        title={cell.data ? `${cell.date}: ${formatDistance(cell.distance)}` : ''}
                       />
                     );
                   })}
@@ -168,9 +181,13 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
         </div>
       </div>
 
-      {/* Hover tooltip */}
+      {/* Hover tooltip - positioned near cursor */}
       {hoveredCell?.data && (
-        <div className="absolute bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 shadow-lg z-10">
+        <div
+          id="calendar-tooltip"
+          className="fixed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 shadow-lg z-50 pointer-events-none"
+          style={{ maxWidth: '200px' }}
+        >
           <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
             {hoveredCell.date}
           </div>

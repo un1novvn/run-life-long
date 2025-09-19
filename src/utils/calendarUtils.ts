@@ -81,12 +81,12 @@ export const getColorIntensity = (distance: number, maxDistance: number): string
 export const getMonthLabels = (year: number): string[] => {
   return Array.from({ length: 12 }, (_, i) => {
     const date = new Date(year, i, 1);
-    return date.toLocaleDateString('zh-CN', { month: 'short' });
+    return date.toLocaleDateString('en-US', { month: 'short' });
   });
 };
 
 export const getWeekdayLabels = (): string[] => {
-  return ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 };
 
 export const formatDistance = (distance: number): string => {
