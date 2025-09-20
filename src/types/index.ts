@@ -36,6 +36,7 @@ export interface HeartRateData {
 
 export interface DistanceData {
   days: number;
+  distance: number;
 }
 
 export interface RunningData {

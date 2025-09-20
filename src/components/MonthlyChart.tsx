@@ -100,7 +100,7 @@ const MonthlyChart: React.FC<MonthlyChartProps> = ({
               </div>
 
               {/* Hover tooltip */}
-              {data && (
+              {/* {data && (
                 <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg z-10 -top-16 left-1/2 transform -translate-x-1/2 pointer-events-none">
                   <div className="text-xs font-medium text-gray-900 dark:text-gray-100">
                     {monthLabel} {selectedYear}
@@ -111,7 +111,7 @@ const MonthlyChart: React.FC<MonthlyChartProps> = ({
                     <div>平均距离: {(data.distance / data.days).toFixed(2)} km/天</div>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           );
         })}

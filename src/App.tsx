@@ -93,7 +93,7 @@ const App: React.FC = () => {
           <BarChart
             title="年度分布"
             data={runningData.yearly}
-            type="distance"
+            initialType="distance"
             color="bg-blue-500"
           />
 
@@ -101,7 +101,7 @@ const App: React.FC = () => {
           <BarChart
             title="地理位置分布"
             data={runningData.locations}
-            type="distance"
+            initialType="distance"
             color="bg-green-500"
           />
         </div>
@@ -111,7 +111,7 @@ const App: React.FC = () => {
           <BarChart
             title="配速分布"
             data={runningData.pace}
-            type="days"
+            initialType="days"
             color="bg-orange-500"
           />
 
@@ -119,7 +119,7 @@ const App: React.FC = () => {
           <BarChart
             title="心率分布"
             data={runningData.heartRate}
-            type="days"
+            initialType="days"
             color="bg-red-500"
           />
         </div>
@@ -129,7 +129,7 @@ const App: React.FC = () => {
           <BarChart
             title="距离分布"
             data={runningData.distance}
-            type="days"
+            initialType="days"
             color="bg-purple-500"
           />
         </div>

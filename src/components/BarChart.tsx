@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface BarChartProps {
   title: string;
   data: Record<string, { days: number; distance?: number }>;
-  type: 'days' | 'distance';
+  initialType?: 'days' | 'distance';
   color?: string;
   className?: string;
 }
@@ -11,18 +11,44 @@ interface BarChartProps {
 const BarChart: React.FC<BarChartProps> = ({ 
   title, 
   data, 
-  type, 
+  initialType = 'days', 
   color = 'bg-blue-500',
   className = '' 
 }) => {
+  const [type, setType] = useState<'days' | 'distance'>(initialType);
   const entries = Object.entries(data);
   const maxValue = Math.max(...entries.map(([_, value]) => value[type] || 0), 1);
 
   return (
     <div className={`card ${className}`}>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-        {title}
-      </h3>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 space-y-2 sm:space-y-0">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          {title}
+        </h3>
+        
+        <div className="flex space-x-2">
+          <button
+            onClick={() => setType('days')}
+            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              type === 'days'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+            }`}
+          >
+            天数
+          </button>
+          <button
+            onClick={() => setType('distance')}
+            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              type === 'distance'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+            }`}
+          >
+            距离
+          </button>
+        </div>
+      </div>
       
       <div className="space-y-3">
         {entries.map(([label, value]) => {

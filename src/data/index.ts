@@ -1,6 +1,6 @@
 import { RunningData } from '../types';
 
-const sampleData: RunningData = {
+export const sampleData: RunningData = {
   "daily": {
     "2022-10-31": {
       "distance": 6.211799999999999,
@@ -5501,30 +5501,36 @@ const sampleData: RunningData = {
   },
   "distance": {
     "0-5km": {
-      "days": 152
+      "days": 152,
+      "distance": 418.21897
     },
     "5-10km": {
-      "days": 208
+      "days": 208,
+      "distance": 1356.2140399999998
     },
     "10-15km": {
-      "days": 119
+      "days": 119,
+      "distance": 1305.0505899999998
     },
     "15-20km": {
-      "days": 24
+      "days": 24,
+      "distance": 377.48974999999996
     },
     "20-25km": {
-      "days": 10
+      "days": 10,
+      "distance": 216.40098999999998
     },
     "25-30km": {
-      "days": 2
+      "days": 2,
+      "distance": 53.71953
     },
     "30-35km": {
-      "days": 1
+      "days": 1,
+      "distance": 30.0311
     },
     "40-45km": {
-      "days": 1
+      "days": 1,
+      "distance": 42.604510000000005
     }
   }
 };
-
-export { sampleData };
