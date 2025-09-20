@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3",
     "vite": "^4.5.14"
@@ -23,6 +24,7 @@
   "scripts": {
     "dev": "vite",
     "build": "node process-coros-data.js && tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && npx gh-pages -d dist -b main -r https://github.com/un1novvn/running-data-pages.git"
   }
 }
