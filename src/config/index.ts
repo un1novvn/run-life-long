@@ -7,8 +7,8 @@ export const SITE_CONFIG = {
 
 // 外部链接配置
 export const EXTERNAL_LINKS = {
-  github: "https://github.com/your-username/your-repo",
-  blog: "https://your-blog-url.com",
+  github: "https://github.com/un1novvn/a-runner-s-page",
+  blog: "https://unk.org.cn",
 };
 
 // 应用信息

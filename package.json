@@ -1,5 +1,5 @@
 {
-  "name": "running-data-visualization",
+  "name": "a-runner-s-page",
   "version": "1.0.0",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "node process-coros-data.js && tsc && vite build",
     "preview": "vite preview"
   }
 }
