@@ -3,11 +3,13 @@ import CalendarChart from './components/CalendarChart';
 import BarChart from './components/BarChart';
 import MonthlyChart from './components/MonthlyChart';
 import ThemeToggle from './components/ThemeToggle';
+import GitHubToggle from './components/GitHubToggle';
+import BlogToggle from './components/BlogToggle';
 import { sampleData } from './data/sampleData';
 import { RunningData } from './types';
 
 const App: React.FC = () => {
-  const [selectedYear, setSelectedYear] = useState(2024);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const runningData: RunningData = sampleData;
 
   const totalStats = useMemo(() => {
@@ -36,7 +38,11 @@ const App: React.FC = () => {
                 近3年跑步数据分析与展示
               </p>
             </div>
-            <ThemeToggle />
+            <div className="flex items-center space-x-2">
+              <GitHubToggle />
+              <BlogToggle />
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </header>
