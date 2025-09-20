@@ -169,7 +169,7 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
                 <div key={dayIndex} className="flex mb-1">
                   {weeks.map((week, weekIndex) => {
                     const cell = week[dayIndex];
-                    if (!cell) return (
+                    if (!cell || !(cell.date)) return (
                       <div
                         key={`empty-${weekIndex}-${dayIndex}`}
                         className="w-3 h-3 rounded-sm m-px opacity-0"

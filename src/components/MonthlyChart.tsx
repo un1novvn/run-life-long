@@ -76,7 +76,8 @@ const MonthlyChart: React.FC<MonthlyChartProps> = ({
       <div className="space-y-4">
         {monthLabels.map((monthLabel, index) => {
           const month = (index + 1).toString();
-          const data = yearData[month];
+          // 月份数字有 2 和 02 两种情况
+          const data = yearData[month] ? yearData[month] : yearData[month.padStart(2, '0')];
           const value = data ? data[type] : 0;
           const percentage = (value / maxValue) * 100;
 

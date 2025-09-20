@@ -14,7 +14,12 @@ export const generateCalendarData = (dailyData: Record<string, DailyData>, year:
   // Generate all days of the year
   const currentDate = new Date(firstDay);
   while (currentDate <= lastDay) {
-    const dateStr = currentDate.toISOString().split('T')[0];
+    // Use local date format instead of ISO string to avoid timezone issues
+    const currentYear = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const dateStr = `${currentYear}-${month}-${day}`;
+    
     const daily = dailyData[dateStr];
     
     calendar.push({
@@ -34,14 +39,34 @@ export const generateHorizontalCalendar = (dailyData: Record<string, DailyData>,
   const weeks: CalendarCell[][] = [];
   let currentWeek: CalendarCell[] = [];
   
-  // Get first day of the year
+  // Get first day of the year (using local time)
   const firstDay = new Date(year, 0, 1);
   const lastDay = new Date(year, 11, 31);
   
   // Generate all days of the year grouped by weeks
   const currentDate = new Date(firstDay);
+  
+  // If the first day is not Monday, fill the first week with empty cells
+  // empty cells 的 distance 是 0，而不是空, 确保 getMaxDistance 传入的是数字, 否则导致的问题是所有单元格没有颜色深浅变化
+  const firstDayOfWeek = firstDay.getDay() === 0 ? 7 : firstDay.getDay(); // Convert to 1-7 (Mon-Sun)
+  if (firstDayOfWeek > 1) {
+    for (let i = 1; i < firstDayOfWeek; i++) {
+      currentWeek.push({
+        date: '',
+        distance: 0,
+        data: undefined,
+        isEmpty: true
+      } as CalendarCell);
+    }
+  }
+  
   while (currentDate <= lastDay) {
-    const dateStr = currentDate.toISOString().split('T')[0];
+    // Use local date format instead of ISO string to avoid timezone issues
+    const currentYear = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const dateStr = `${currentYear}-${month}-${day}`;
+    
     const daily = dailyData[dateStr];
     const dayOfWeek = currentDate.getDay() === 0 ? 7 : currentDate.getDay(); // Convert to 1-7 (Mon-Sun)
     
