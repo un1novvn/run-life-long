@@ -1,8 +1,9 @@
 import React from 'react';
+import { EXTERNAL_LINKS } from '../config';
 
 const BlogToggle: React.FC = () => {
   const openBlog = () => {
-    window.open('https://your-blog-url.com', '_blank');
+    window.open(EXTERNAL_LINKS.blog, '_blank');
   };
 
   return (

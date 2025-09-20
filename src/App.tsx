@@ -5,7 +5,8 @@ import MonthlyChart from './components/MonthlyChart';
 import ThemeToggle from './components/ThemeToggle';
 import GitHubToggle from './components/GitHubToggle';
 import BlogToggle from './components/BlogToggle';
-import { sampleData } from './data/sampleData';
+import { SITE_CONFIG } from './config';
+import { sampleData } from './data';
 import { RunningData } from './types';
 
 const App: React.FC = () => {
@@ -32,10 +33,10 @@ const App: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                跑步数据可视化
+                {SITE_CONFIG.title}
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                近3年跑步数据分析与展示
+                {SITE_CONFIG.description}
               </p>
             </div>
             <div className="flex items-center space-x-2">
@@ -147,7 +148,7 @@ const App: React.FC = () => {
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-6">
         <div className="container-custom text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            © 2025 跑步数据可视化 - 基于 React + TypeScript + Tailwind CSS 构建
+            {SITE_CONFIG.footerText}
           </p>
         </div>
       </footer>

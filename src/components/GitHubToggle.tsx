@@ -1,8 +1,9 @@
 import React from 'react';
+import { EXTERNAL_LINKS } from '../config';
 
 const GitHubToggle: React.FC = () => {
   const openGitHub = () => {
-    window.open('https://github.com/your-username/your-repo', '_blank');
+    window.open(EXTERNAL_LINKS.github, '_blank');
   };
 
   return (
