@@ -2,7 +2,7 @@ import requests
 import json
 
 # 请求的 URL
-url = "https://apicn.coros.com/coros/data/sport/query?accessToken=BITC7Z3L3LCM4PQ41SYV3UL0DY4NH1PP"
+url = "https://apicn.coros.com/coros/data/sport/query?accessToken=O8TO393LCXH5LYM9KWT7VP0FIJBG4DH2"
 
 # 请求头
 headers = {
@@ -49,18 +49,20 @@ def req(date: str):
 
 import time
 
-for year in range(2022, 2026):
+req('202510')
 
-    for month in range(1, 13):
+# for year in range(2022, 2026):
 
-        if year == 2025 and month == 10:
-            exit()
-        if year == 2022 and month < 10:
-            continue
+#     for month in range(1, 13):
 
-        month = str(month).zfill(2)
-        date = f'{year}{month}'
-        req(date)
+#         if year == 2025 and month == 10:
+#             exit()
+#         if year == 2022 and month < 10:
+#             continue
+
+#         month = str(month).zfill(2)
+#         date = f'{year}{month}'
+#         req(date)
 
 
 # 请求体
