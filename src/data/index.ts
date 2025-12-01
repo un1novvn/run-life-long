@@ -5661,6 +5661,146 @@ export const sampleData: RunningData = {
       "sportType": 100,
       "location": "广州市",
       "count": 1
+    },
+    "2025-11-29": {
+      "distance": 1.05116,
+      "startTime": "11:43",
+      "heartRate": 150,
+      "pace": "3:07",
+      "speedValue": 187,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-27": {
+      "distance": 10.02093,
+      "startTime": "18:12",
+      "heartRate": 170,
+      "pace": "4:36",
+      "speedValue": 276,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-24": {
+      "distance": 10.02465,
+      "startTime": "18:00",
+      "heartRate": 166,
+      "pace": "4:53",
+      "speedValue": 293,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-22": {
+      "distance": 2.74512,
+      "startTime": "17:44",
+      "heartRate": 158,
+      "pace": "5:26",
+      "speedValue": 326,
+      "sportType": 100,
+      "location": "郑州市",
+      "count": 1
+    },
+    "2025-11-19": {
+      "distance": 7.144880000000001,
+      "startTime": "18:29",
+      "heartRate": 159,
+      "pace": "4:26",
+      "speedValue": 299,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 2
+    },
+    "2025-11-17": {
+      "distance": 21.10679,
+      "startTime": "18:01",
+      "heartRate": 163,
+      "pace": "5:01",
+      "speedValue": 301,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-15": {
+      "distance": 15.03305,
+      "startTime": "18:24",
+      "heartRate": 167,
+      "pace": "4:56",
+      "speedValue": 296,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-13": {
+      "distance": 10.022129999999999,
+      "startTime": "18:54",
+      "heartRate": 164,
+      "pace": "4:51",
+      "speedValue": 291,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-12": {
+      "distance": 5.01551,
+      "startTime": "20:52",
+      "heartRate": 166,
+      "pace": "4:28",
+      "speedValue": 268,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-10": {
+      "distance": 6.88304,
+      "startTime": "19:08",
+      "heartRate": 162,
+      "pace": "5:06",
+      "speedValue": 321,
+      "sportType": 100,
+      "location": "珠海市",
+      "count": 2
+    },
+    "2025-11-07": {
+      "distance": 8.20209,
+      "startTime": "18:07",
+      "heartRate": 169,
+      "pace": "4:57",
+      "speedValue": 297,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-05": {
+      "distance": 5.06528,
+      "startTime": "19:11",
+      "heartRate": 138,
+      "pace": "4:13",
+      "speedValue": 306,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 2
+    },
+    "2025-11-03": {
+      "distance": 10.0284,
+      "startTime": "18:23",
+      "heartRate": 164,
+      "pace": "4:53",
+      "speedValue": 293,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2025-11-01": {
+      "distance": 10.019260000000001,
+      "startTime": "18:38",
+      "heartRate": 174,
+      "pace": "4:40",
+      "speedValue": 280,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
     }
   },
   "monthly": {
@@ -5820,8 +5960,8 @@ export const sampleData: RunningData = {
         "days": 12
       },
       "11": {
-        "distance": 0,
-        "days": 0
+        "distance": 122.36229000000002,
+        "days": 14
       },
       "12": {
         "distance": 0,
@@ -5879,14 +6019,14 @@ export const sampleData: RunningData = {
       "days": 199
     },
     "2025": {
-      "distance": 1475.4315000000004,
-      "days": 157
+      "distance": 1597.7937900000004,
+      "days": 171
     }
   },
   "locations": {
     "广州市": {
-      "days": 437,
-      "distance": 3238.5110799999975
+      "days": 449,
+      "distance": 3351.2452099999973
     },
     "杭州市": {
       "days": 58,
@@ -5905,8 +6045,12 @@ export const sampleData: RunningData = {
       "distance": 11.759879999999999
     },
     "郑州市": {
-      "days": 1,
-      "distance": 6.52787
+      "days": 2,
+      "distance": 9.27299
+    },
+    "珠海市": {
+      "days": 2,
+      "distance": 8.58208
     },
     "桂林市": {
       "days": 1,
@@ -5919,32 +6063,28 @@ export const sampleData: RunningData = {
     "梅州市": {
       "days": 1,
       "distance": 2.71181
-    },
-    "珠海市": {
-      "days": 1,
-      "distance": 1.6990399999999999
     }
   },
   "pace": {
     "3:00-3:30": {
-      "days": 2,
-      "distance": 2.0419799999999997
+      "days": 3,
+      "distance": 3.09314
     },
     "3:30-4:00": {
       "days": 5,
       "distance": 6.223190000000001
     },
     "4:00-4:30": {
-      "days": 17,
-      "distance": 52.15274
+      "days": 20,
+      "distance": 69.37841
     },
     "4:30-5:00": {
-      "days": 85,
-      "distance": 436.1952099999999
+      "days": 92,
+      "distance": 509.5457199999999
     },
     "5:00-5:30": {
-      "days": 289,
-      "distance": 2256.4319499999997
+      "days": 292,
+      "distance": 2287.1668999999997
     },
     "5:30-6:00": {
       "days": 137,
@@ -5973,46 +6113,46 @@ export const sampleData: RunningData = {
       "distance": 18.902700000000003
     },
     "130-140": {
-      "days": 19,
-      "distance": 35.86725
+      "days": 20,
+      "distance": 40.93253
     },
     "140-150": {
       "days": 60,
       "distance": 221.45374000000004
     },
     "150-160": {
-      "days": 217,
-      "distance": 1666.6858900000004
+      "days": 220,
+      "distance": 1677.6270500000005
     },
     "160-170": {
-      "days": 240,
-      "distance": 2080.59298
+      "days": 248,
+      "distance": 2166.90864
     },
     "170-180": {
-      "days": 17,
-      "distance": 160.61446999999995
+      "days": 19,
+      "distance": 180.65465999999995
     }
   },
   "distance": {
     "0-5km": {
-      "days": 158,
-      "distance": 427.73159000000004
+      "days": 160,
+      "distance": 431.52787
     },
     "5-10km": {
-      "days": 238,
-      "distance": 1585.7307800000003
+      "days": 243,
+      "distance": 1618.0415800000003
     },
     "10-15km": {
-      "days": 129,
-      "distance": 1406.07627
+      "days": 134,
+      "distance": 1456.19164
     },
     "15-20km": {
-      "days": 27,
-      "distance": 423.56807999999995
+      "days": 28,
+      "distance": 438.60112999999996
     },
     "20-25km": {
-      "days": 10,
-      "distance": 216.40098999999998
+      "days": 11,
+      "distance": 237.50777999999997
     },
     "25-30km": {
       "days": 2,
