@@ -3,3 +3,4 @@ new.md
 .vscode/
 dist/
 *-lock.json
+.env
