@@ -1,10 +1,11 @@
 {
-  "name": "a-runner-s-page",
+  "name": "run-life-long",
   "version": "1.0.0",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.21",
+    "dotenv": "^17.2.3",
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
     "react": "^18.2.0",
