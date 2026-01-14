@@ -1,6 +1,15 @@
 {
-  "name": "a-runner-s-page",
-  "version": "1.0.0",
+  "name": "nodejs-express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "node coros-dump.js && node process-coros-data.js && tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && npx gh-pages -d dist --cname running.unk.org.cn -b main -r git@github.com:un1novvn/running-data-pages.git",
+    "set_git_config": "git config --global user.name \"un1novvn\" && git config --global user.email \"helloworld260@163.com\" && chmod 600 /code/id_rsa",
+    "start": "npm run set_git_config && ln -s /opt/nodejs/node_modules node_modules && npm run deploy && node ./index.js"
+  },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@vitejs/plugin-react": "^4.3.3",
@@ -11,20 +20,17 @@
     "react-dom": "^18.2.0",
     "recharts": "^2.7.2",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.1.6"
-  },
-  "devDependencies": {
+    "typescript": "^5.1.6",
+    "vite": "^4.5.14",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "gh-pages": "^6.3.0",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3",
-    "vite": "^4.5.14"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "node process-coros-data.js && tsc && vite build",
-    "preview": "vite preview",
-    "deploy": "npm run build && npx gh-pages -d dist --cname running.unk.org.cn -b main -r https://github.com/un1novvn/running-data-pages.git"
+    "postcss": "^8.4.27"
   }
 }
