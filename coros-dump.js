@@ -178,13 +178,16 @@ async function main() {
         // 2. 计算当前月份
         const now = new Date();
         const year = now.getFullYear();
-        const month = (now.getMonth() + 1).toString().padStart(2, '0');
-        const currentMonth = `${year}${month}`;
+        const month1 = (now.getMonth() + 1).toString().padStart(2, '0');
+        const month2 = (now.getMonth()).toString().padStart(2, '0');
+        const currentMonth = `${year}${month1}`;
+        const lastMonth = `${year}${month2}`;
 
         console.log(`Fetching data for current month: ${currentMonth}`);
         
         // 3. 获取数据（覆盖）
         await req(currentMonth, accessToken);
+        await req(lastMonth, accessToken);
 
     } catch (error) {
         console.error("Main process failed:", error);

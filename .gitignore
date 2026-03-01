@@ -4,3 +4,4 @@ new.md
 dist/
 *-lock.json
 id_rsa
+./node_modules
