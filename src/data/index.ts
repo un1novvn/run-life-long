@@ -6412,6 +6412,86 @@ export const sampleData: RunningData = {
       "location": "广州市",
       "count": 1
     },
+    "2026-05-31": {
+      "distance": 13.215110000000001,
+      "startTime": "17:58",
+      "heartRate": 164,
+      "pace": "5:04",
+      "speedValue": 304,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2026-05-28": {
+      "distance": 13.01957,
+      "startTime": "18:26",
+      "heartRate": 167,
+      "pace": "5:34",
+      "speedValue": 334,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2026-05-26": {
+      "distance": 11.05333,
+      "startTime": "17:58",
+      "heartRate": 163,
+      "pace": "6:11",
+      "speedValue": 371,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2026-05-23": {
+      "distance": 0.8746499999999999,
+      "startTime": "18:57",
+      "heartRate": 134,
+      "pace": "5:52",
+      "speedValue": 352,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2026-05-22": {
+      "distance": 10.024040000000001,
+      "startTime": "18:49",
+      "heartRate": 165,
+      "pace": "5:23",
+      "speedValue": 323,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2026-05-20": {
+      "distance": 10.03228,
+      "startTime": "18:44",
+      "heartRate": 162,
+      "pace": "5:06",
+      "speedValue": 306,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2026-05-18": {
+      "distance": 10.02403,
+      "startTime": "18:47",
+      "heartRate": 157,
+      "pace": "5:18",
+      "speedValue": 318,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
+    "2026-05-16": {
+      "distance": 10.02722,
+      "startTime": "18:17",
+      "heartRate": 155,
+      "pace": "5:05",
+      "speedValue": 305,
+      "sportType": 100,
+      "location": "广州市",
+      "count": 1
+    },
     "2026-05-14": {
       "distance": 10.01356,
       "startTime": "18:48",
@@ -6704,8 +6784,8 @@ export const sampleData: RunningData = {
         "days": 11
       },
       "05": {
-        "distance": 60.117720000000006,
-        "days": 6
+        "distance": 138.38795,
+        "days": 14
       },
       "06": {
         "distance": 0,
@@ -6743,14 +6823,14 @@ export const sampleData: RunningData = {
       "days": 185
     },
     "2026": {
-      "distance": 478.77854,
-      "days": 53
+      "distance": 557.0487700000001,
+      "days": 61
     }
   },
   "locations": {
     "广州市": {
-      "days": 504,
-      "distance": 3846.840889999997
+      "days": 512,
+      "distance": 3925.1111199999973
     },
     "惠州市": {
       "days": 69,
@@ -6811,16 +6891,16 @@ export const sampleData: RunningData = {
       "distance": 869.2987200000002
     },
     "5:00-5:30": {
-      "days": 312,
-      "distance": 2461.331109999999
+      "days": 317,
+      "distance": 2514.653789999999
     },
     "5:30-6:00": {
-      "days": 140,
-      "distance": 1287.7348799999997
+      "days": 142,
+      "distance": 1301.6290999999997
     },
     "6:00-6:30": {
-      "days": 26,
-      "distance": 198.76986999999997
+      "days": 27,
+      "distance": 209.82319999999996
     },
     "6:30-7:00": {
       "days": 6,
@@ -6841,20 +6921,20 @@ export const sampleData: RunningData = {
       "distance": 20.80495
     },
     "130-140": {
-      "days": 20,
-      "distance": 40.93253
+      "days": 21,
+      "distance": 41.80718
     },
     "140-150": {
       "days": 66,
       "distance": 286.81684000000007
     },
     "150-160": {
-      "days": 226,
-      "distance": 1709.2775000000006
+      "days": 228,
+      "distance": 1729.3287500000006
     },
     "160-170": {
-      "days": 292,
-      "distance": 2606.136399999999
+      "days": 297,
+      "distance": 2663.480729999999
     },
     "170-180": {
       "days": 28,
@@ -6863,16 +6943,16 @@ export const sampleData: RunningData = {
   },
   "distance": {
     "0-5km": {
-      "days": 168,
-      "distance": 451.51168000000007
+      "days": 169,
+      "distance": 452.38633000000004
     },
     "5-10km": {
       "days": 254,
       "distance": 1692.1218500000002
     },
     "10-15km": {
-      "days": 180,
-      "distance": 1929.9120199999995
+      "days": 187,
+      "distance": 2007.3075999999994
     },
     "15-20km": {
       "days": 29,
