@@ -21,7 +21,7 @@ const BarChart: React.FC<BarChartProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
         <h3 className="text-xs font-bold text-black dark:text-white tracking-widest uppercase">
           {title}
         </h3>

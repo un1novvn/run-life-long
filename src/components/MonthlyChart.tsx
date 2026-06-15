@@ -32,7 +32,7 @@ const MonthlyChart: React.FC<MonthlyChartProps> = ({
 
   return (
     <div className="relative">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
         <div className="flex items-center space-x-4">
           <h3 className="text-xs font-bold text-black dark:text-white tracking-widest uppercase">
             月度分布
