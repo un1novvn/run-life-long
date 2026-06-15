@@ -39,12 +39,12 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
     let startWeek = 0;
 
     weeks.forEach((week, weekIndex) => {
-      const firstDay = week[0];
-      if (firstDay) {
-        const date = new Date(firstDay.date);
+      const firstValidDay = week.find(day => day && day.date);
+      if (firstValidDay) {
+        const date = new Date(firstValidDay.date);
         const month = date.getMonth();
         
-        if (month !== currentMonth) {
+        if (!isNaN(month) && month !== currentMonth) {
           if (currentMonth !== -1) {
             positions.push({
               month: monthLabels[currentMonth],
@@ -74,9 +74,9 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
 
   // Calculate tooltip position with bounds checking
   const getTooltipPosition = (mouseX: number, mouseY: number) => {
-    const tooltipWidth = 200; // maxWidth from the tooltip
-    const tooltipHeight = 150; // estimated height
-    const offset = 10; // offset from cursor
+    const tooltipWidth = 150;
+    const tooltipHeight = 100;
+    const offset = 15;
     
     let left = mouseX + offset;
     let top = mouseY + offset;
@@ -95,52 +95,41 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
   };
 
   return (
-    <div className="card relative">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-          跑步日历 {year}
-        </h2>
-        <div className="flex items-center space-x-2">
+    <div className="relative">
+      <div className="flex flex-col items-center mb-16">
+        <div className="flex items-center space-x-8 text-gray-400">
           <button
             onClick={() => onYearChange(year - 1)}
             disabled={!availableYears.includes(year - 1)}
-            className="btn btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hover:text-black dark:hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
           >
-            上一年
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <select
-            value={year}
-            onChange={(e) => onYearChange(Number(e.target.value))}
-            className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            {availableYears.map(y => (
-              <option key={y} value={y}>{y}</option>
-            ))}
-          </select>
+          <span className="text-sm tracking-[0.2em]">{year}</span>
           <button
             onClick={() => onYearChange(year + 1)}
             disabled={!availableYears.includes(year + 1)}
-            className="btn btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hover:text-black dark:hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
           >
-            下一年
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto pb-8 flex justify-center">
         <div className="inline-block">
           {/* Month labels at top - perfectly aligned with cells */}
           <div className="flex mb-2" style={{ marginLeft: '32px' }}>
             {monthPositions.map((pos, index) => (
               <div
                 key={index}
-                className="text-xs text-gray-600 dark:text-gray-400 text-center"
+                className="text-[10px] text-gray-400 tracking-widest text-center uppercase"
                 style={{ 
                   width: `${(pos.endWeek - pos.startWeek + 1) * 14}px`,
                   marginRight: '1px'
                 }}
               >
-                {pos.month}
+                {pos.month ? pos.month.substring(0, 3) : ''}
               </div>
             ))}
           </div>
@@ -151,14 +140,14 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
               {weekdayLabels.map((day, index) => (
                 <div
                   key={index}
-                  className="text-xs text-gray-600 dark:text-gray-400 text-center w-8 h-3 flex items-center justify-center mb-1"
+                  className="text-[10px] text-gray-400 text-center w-8 h-3 flex items-center justify-center mb-1 tracking-widest uppercase"
                   style={{ 
                     height: '14px', 
                     marginBottom: '4px',
                     lineHeight: '14px'
                   }}
                 >
-                  {day}
+                  {index % 2 === 0 ? day.substring(0, 3) : ''}
                 </div>
               ))}
             </div>
@@ -179,7 +168,7 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
                     return (
                       <div
                         key={cell.date}
-                        className={`w-3 h-3 rounded-sm m-px cursor-pointer transition-all duration-200 ${
+                        className={`w-3 h-3 m-[1px] cursor-pointer transition-all duration-200 ${
                           getColorIntensity(cell.distance, maxDistance)
                         } ${cell.isEmpty ? 'opacity-50' : ''}`}
                         onMouseEnter={(e) => {
@@ -205,41 +194,25 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
         </div>
       </div>
 
-      {/* Hover tooltip - positioned at mouse cursor */}
+      {/* Hover tooltip */}
       {hoveredCell?.data && mousePosition && (
         <div
-          id="calendar-tooltip"
-          className="fixed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 shadow-lg z-50 pointer-events-none"
+          className="fixed bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-4 shadow-2xl z-50 pointer-events-none"
           style={{ 
-            maxWidth: '200px',
             left: `${getTooltipPosition(mousePosition.x, mousePosition.y).left}px`,
             top: `${getTooltipPosition(mousePosition.x, mousePosition.y).top}px`
           }}
         >
-          <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+          <div className="text-xs font-bold text-black dark:text-white tracking-widest mb-3">
             {hoveredCell.date}
           </div>
-          <div className="text-xs text-gray-600 dark:text-gray-400 space-y-1 mt-1">
-            <div>距离: {formatDistance(hoveredCell.data.distance)}</div>
-            <div>配速: {hoveredCell.data.pace}/km</div>
-            <div>心率: {hoveredCell.data.heartRate} bpm</div>
-            <div>地点: {hoveredCell.data.location}</div>
-            <div>开始时间: {hoveredCell.data.startTime}</div>
+          <div className="text-xs text-gray-500 space-y-2 tracking-wider">
+            <div>DIST <span className="text-black dark:text-white float-right ml-4">{formatDistance(hoveredCell.data.distance)}</span></div>
+            <div>PACE <span className="text-black dark:text-white float-right ml-4">{hoveredCell.data.pace}/km</span></div>
+            <div>HR <span className="text-black dark:text-white float-right ml-4">{hoveredCell.data.heartRate} bpm</span></div>
           </div>
         </div>
       )}
-
-      {/* Legend */}
-      <div className="flex items-center justify-center mt-4 space-x-2 text-xs text-gray-600 dark:text-gray-400">
-        <span>较少</span>
-        {[0.2, 0.4, 0.6, 0.8, 1].map((intensity, index) => (
-          <div
-            key={index}
-            className={`w-3 h-3 rounded-sm ${getColorIntensity(intensity * maxDistance, maxDistance)}`}
-          />
-        ))}
-        <span>较多</span>
-      </div>
     </div>
   );
 };
