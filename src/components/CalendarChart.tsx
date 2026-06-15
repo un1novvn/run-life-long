@@ -116,8 +116,8 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
         </div>
       </div>
 
-      <div className="overflow-x-auto pb-8 flex justify-center">
-        <div className="inline-block">
+      <div className="w-full overflow-x-auto pb-8 flex justify-start md:justify-center">
+        <div className="inline-block min-w-max px-4 md:px-0">
           {/* Month labels at top - perfectly aligned with cells */}
           <div className="flex mb-2" style={{ marginLeft: '32px' }}>
             {monthPositions.map((pos, index) => (
@@ -210,6 +210,9 @@ const CalendarChart: React.FC<CalendarChartProps> = ({ dailyData, year, onYearCh
             <div>DIST <span className="text-black dark:text-white float-right ml-4">{formatDistance(hoveredCell.data.distance)}</span></div>
             <div>PACE <span className="text-black dark:text-white float-right ml-4">{hoveredCell.data.pace}/km</span></div>
             <div>HR <span className="text-black dark:text-white float-right ml-4">{hoveredCell.data.heartRate} bpm</span></div>
+            {hoveredCell.data.startTime && (
+              <div>TIME <span className="text-black dark:text-white float-right ml-4">{hoveredCell.data.startTime}</span></div>
+            )}
           </div>
         </div>
       )}

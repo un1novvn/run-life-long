@@ -28,8 +28,8 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-black transition-colors duration-200">
       {/* Header */}
-      <header className="py-8 mb-12">
-        <div className="container-custom flex justify-between items-center">
+      <header className="py-6 md:py-8 mb-8 md:mb-12">
+        <div className="container-custom flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm font-bold text-black dark:text-white tracking-widest uppercase">
             {SITE_CONFIG.title}
           </div>
@@ -44,45 +44,41 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="container-custom pb-24">
         {/* Hero Section */}
-        <div className="mb-32 text-center">
-          {/* <div className="text-gray-400 dark:text-gray-500 text-xs tracking-widest mb-16 uppercase">
-            未知的终点，无尽的旅程。
-          </div> */}
-          
-          <div className="flex flex-col md:flex-row justify-center items-end space-y-16 md:space-y-0 md:space-x-32">
+        <div className="mb-20 md:mb-32 text-center pt-8 md:pt-12">
+          <div className="flex flex-col md:flex-row justify-center items-center md:items-end space-y-12 md:space-y-0 md:space-x-24 lg:space-x-32">
             <div className="flex flex-col items-center">
-              <div className="text-[36px] md:text-[48px] font-bold leading-none tracking-tighter text-black dark:text-white">
+              <div className="text-[48px] md:text-[48px] lg:text-[70px] font-bold leading-none tracking-tighter text-black dark:text-white">
                 {totalStats.totalDays}
               </div>
-              <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-3 tracking-widest">
+              <div className="text-[9px] md:text-[10px] text-gray-400 dark:text-gray-500 mt-2 md:mt-3 tracking-widest">
                 总跑步天数
               </div>
             </div>
             
             <div className="flex flex-col items-center">
-              <div className="text-[36px] md:text-[48px] font-bold leading-none tracking-tighter text-black dark:text-white">
-                {Math.floor(totalStats.totalDistance)}<span className="text-[18px] md:text-[24px] text-gray-300 dark:text-gray-700">.{(totalStats.totalDistance % 1).toFixed(2).substring(2)}</span>
+              <div className="text-[48px] md:text-[48px] lg:text-[70px] font-bold leading-none tracking-tighter text-black dark:text-white">
+                {Math.floor(totalStats.totalDistance)}<span className="text-[20px] md:text-[24px] lg:text-[32px] text-gray-300 dark:text-gray-700">.{(totalStats.totalDistance % 1).toFixed(2).substring(2)}</span>
               </div>
-              <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-3 tracking-widest">
+              <div className="text-[9px] md:text-[10px] text-gray-400 dark:text-gray-500 mt-2 md:mt-3 tracking-widest">
                 总跑步距离 (km)
               </div>
             </div>
             
             <div className="flex flex-col items-center">
-              <div className="text-[36px] md:text-[48px] font-bold leading-none tracking-tighter text-black dark:text-white">
+              <div className="text-[48px] md:text-[48px] lg:text-[70px] font-bold leading-none tracking-tighter text-black dark:text-white">
                 {totalStats.averageDistance.toFixed(2)}
               </div>
-              <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-3 tracking-widest">
+              <div className="text-[9px] md:text-[10px] text-gray-400 dark:text-gray-500 mt-2 md:mt-3 tracking-widest">
                 平均距离 (km/天)
               </div>
             </div>
           </div>
           
-          <div className="w-full max-w-4xl mx-auto h-[1px] bg-gray-200 dark:bg-gray-800 mt-24"></div>
+          <div className="w-[80%] md:w-full max-w-4xl mx-auto h-[1px] bg-gray-200 dark:bg-gray-800 mt-16 md:mt-24"></div>
         </div>
 
         {/* Calendar Chart */}
-        <div className="mb-24">
+        <div className="mb-16 md:mb-24">
           <CalendarChart
             dailyData={runningData.daily}
             year={selectedYear}
@@ -91,7 +87,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Distribution Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-12 md:mb-16">
           <BarChart
             title="年度分布"
             data={runningData.yearly}
@@ -106,7 +102,7 @@ const App: React.FC = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-12 md:mb-16">
           <BarChart
             title="配速分布"
             data={runningData.pace}
@@ -121,7 +117,7 @@ const App: React.FC = () => {
           />
         </div>
 
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <BarChart
             title="距离分布"
             data={runningData.distance}
@@ -130,7 +126,7 @@ const App: React.FC = () => {
           />
         </div>
 
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <MonthlyChart
             monthlyData={runningData.monthly}
             selectedYear={selectedYear}
