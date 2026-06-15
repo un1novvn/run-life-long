@@ -12,7 +12,7 @@ const BarChart: React.FC<BarChartProps> = ({
   title, 
   data, 
   initialType = 'days', 
-  color = 'bg-blue-500',
+  color = 'bg-black dark:bg-white',
   className = '' 
 }) => {
   const [type, setType] = useState<'days' | 'distance'>(initialType);
@@ -20,32 +20,32 @@ const BarChart: React.FC<BarChartProps> = ({
   const maxValue = Math.max(...entries.map(([_, value]) => value[type] || 0), 1);
 
   return (
-    <div className={`card ${className}`}>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 space-y-2 sm:space-y-0">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+    <div className={`relative ${className}`}>
+      <div className="flex items-center justify-between mb-8">
+        <h3 className="text-xs font-bold text-black dark:text-white tracking-widest uppercase">
           {title}
         </h3>
         
-        <div className="flex space-x-2">
+        <div className="flex space-x-6">
           <button
             onClick={() => setType('days')}
-            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+            className={`text-[10px] tracking-widest uppercase transition-colors ${
               type === 'days'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                ? 'text-black dark:text-white font-bold'
+                : 'text-gray-400 hover:text-black dark:hover:text-white'
             }`}
           >
-            天数
+            Days
           </button>
           <button
             onClick={() => setType('distance')}
-            className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+            className={`text-[10px] tracking-widest uppercase transition-colors ${
               type === 'distance'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                ? 'text-black dark:text-white font-bold'
+                : 'text-gray-400 hover:text-black dark:hover:text-white'
             }`}
           >
-            距离
+            Dist
           </button>
         </div>
       </div>
@@ -57,37 +57,20 @@ const BarChart: React.FC<BarChartProps> = ({
           return (
             <div key={label} className="group relative">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                <span className="text-[10px] text-gray-500 dark:text-gray-400 font-medium tracking-widest uppercase">
                   {label}
                 </span>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {type === 'days' ? `${value.days} 天` : `${value.distance?.toFixed(2)} km`}
+                <span className="text-[10px] text-gray-400 dark:text-gray-500 tracking-widest">
+                  {type === 'days' ? `${value.days} d` : `${value.distance?.toFixed(1)} km`}
                 </span>
               </div>
               
-              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div className="w-full bg-gray-100 dark:bg-gray-900 h-[2px] relative">
                 <div
-                  className={`${color} h-2 rounded-full transition-all duration-300 group-hover:opacity-80`}
+                  className={`${color} h-[2px] transition-all duration-300`}
                   style={{ width: `${percentage}%` }}
                 />
               </div>
-
-              {/* Hover tooltip */}
-              {/* <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg z-10 -top-12 left-1/2 transform -translate-x-1/2 pointer-events-none">
-                <div className="text-xs font-medium text-gray-900 dark:text-gray-100">
-                  {label}
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  {type === 'days' ? (
-                    `${value.days} 天跑步`
-                  ) : (
-                    <>
-                      {value.days} 天<br />
-                      {value.distance?.toFixed(2)} km
-                    </>
-                  )}
-                </div>
-              </div> */}
             </div>
           );
         })}

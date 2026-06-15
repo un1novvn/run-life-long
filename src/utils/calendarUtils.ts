@@ -91,22 +91,83 @@ export const generateHorizontalCalendar = (dailyData: Record<string, DailyData>,
   return weeks;
 };
 
+export const generateMonthlyCalendar = (dailyData: Record<string, DailyData>, year: number, monthIndex: number): CalendarCell[][] => {
+  const weeks: CalendarCell[][] = [];
+  let currentWeek: CalendarCell[] = [];
+  
+  const firstDay = new Date(year, monthIndex, 1);
+  const lastDay = new Date(year, monthIndex + 1, 0);
+  
+  const firstDayOfWeek = firstDay.getDay() === 0 ? 7 : firstDay.getDay(); // 1-7
+  
+  for (let i = 1; i < firstDayOfWeek; i++) {
+    currentWeek.push({
+      date: '',
+      distance: 0,
+      data: undefined,
+      isEmpty: true
+    } as CalendarCell);
+  }
+  
+  const currentDate = new Date(firstDay);
+  while (currentDate <= lastDay) {
+    const currentYear = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const dateStr = `${currentYear}-${month}-${day}`;
+    
+    const daily = dailyData[dateStr];
+    const dayOfWeek = currentDate.getDay() === 0 ? 7 : currentDate.getDay();
+    
+    currentWeek.push({
+      date: dateStr,
+      distance: daily?.distance || 0,
+      data: daily,
+      isEmpty: !daily
+    });
+    
+    if (dayOfWeek === 7 || currentDate.getTime() === lastDay.getTime()) {
+      // pad end of last week
+      if (currentDate.getTime() === lastDay.getTime() && dayOfWeek !== 7) {
+        for (let i = dayOfWeek + 1; i <= 7; i++) {
+          currentWeek.push({
+            date: '',
+            distance: 0,
+            data: undefined,
+            isEmpty: true
+          } as CalendarCell);
+        }
+      }
+      weeks.push(currentWeek);
+      currentWeek = [];
+    }
+    
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  
+  return weeks;
+};
+
 export const getColorIntensity = (distance: number, maxDistance: number): string => {
-  if (distance === 0) return 'bg-gray-100 dark:bg-gray-800';
+  if (distance === 0) return 'bg-transparent';
   
   const intensity = Math.min(distance / maxDistance, 1);
   
-  if (intensity < 0.2) return 'bg-green-100 dark:bg-green-900';
-  if (intensity < 0.4) return 'bg-green-200 dark:bg-green-800';
-  if (intensity < 0.6) return 'bg-green-300 dark:bg-green-700';
-  if (intensity < 0.8) return 'bg-green-400 dark:bg-green-600';
-  return 'bg-green-500 dark:bg-green-500';
+  if (intensity < 0.1) return 'bg-gray-200 dark:bg-gray-800';
+  if (intensity < 0.2) return 'bg-gray-300 dark:bg-gray-700';
+  if (intensity < 0.3) return 'bg-gray-400 dark:bg-gray-600';
+  if (intensity < 0.4) return 'bg-gray-500 dark:bg-gray-500';
+  if (intensity < 0.5) return 'bg-gray-600 dark:bg-gray-400';
+  if (intensity < 0.6) return 'bg-gray-700 dark:bg-gray-300';
+  if (intensity < 0.8) return 'bg-gray-800 dark:bg-gray-200';
+  if (intensity < 0.9) return 'bg-gray-900 dark:bg-gray-100';
+  return 'bg-black dark:bg-white';
 };
 
 export const getMonthLabels = (year: number): string[] => {
   return Array.from({ length: 12 }, (_, i) => {
     const date = new Date(year, i, 1);
-    return date.toLocaleDateString('en-US', { month: 'short' });
+    return date.toLocaleDateString('en-US', { month: 'long' });
   });
 };
 
